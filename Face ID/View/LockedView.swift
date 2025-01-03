@@ -6,10 +6,42 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 struct LockedView: View {
+    
+    @EnvironmentObject var appManager: AppManager
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("The screen is locked")
+            
+            Button {
+                // unlock app
+                authenticate()
+            } label: {
+                Text("To unlock app, press here")
+            }
+            .padding()
+        }
+    }
+    
+    private func authenticate() {
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Face ID required to unlock hidden screen"
+        
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, _ in
+                if success {
+                    // unlock app
+                    appManager.currentView = .homeScreen
+                } else {
+                    // show error message
+                }
+            }
+        }
     }
 }
 
