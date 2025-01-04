@@ -20,6 +20,12 @@
 This project demonstrates the capability of hiding specific views or parts of an app that can only be accessed after successfully authenticating with Face ID
 in an iOS application.
 
+
+## Demo
+
+![til](https://raw.githubusercontent.com/luongthomas/Face-ID/refs/heads/main/demo.gif)
+
+
 ## About the Series
 
 As part of a series of learning and improving my understanding of the iOS and MacOS development ecosystem, I'm creating several XCode projects
